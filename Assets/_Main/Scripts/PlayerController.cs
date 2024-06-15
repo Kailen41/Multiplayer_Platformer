@@ -29,6 +29,6 @@ public class PlayerController : MonoBehaviour
     }
     private void HandleAnimations()
     {
-        _anim.SetFloat("Speed", Mathf.Abs(_rb2D.velocity.x));
+        _anim.SetFloat("Speed", _rb2D.velocity.x);
     }
 }
