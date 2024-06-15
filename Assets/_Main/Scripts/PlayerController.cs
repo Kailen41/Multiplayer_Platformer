@@ -5,22 +5,30 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D _rb2D;
+    private Animator _anim;
 
-    private float _movementSpeed = 8.0f;
+    private float _movementSpeed = 4.0f;
 
     private void Awake()
     {
         _rb2D = GetComponent<Rigidbody2D>();
+        _anim = GetComponentInChildren<Animator>();
     }
 
     private void Update()
     {
-        HandlePlayerMovement();
+        HandleMovement();
+        HandleAnimations();
     }
 
-    private void HandlePlayerMovement()
+
+    private void HandleMovement()
     {
         float _xInput = Input.GetAxisRaw("Horizontal");
         _rb2D.velocity = new Vector2(_xInput * _movementSpeed, _rb2D.velocity.y);
+    }
+    private void HandleAnimations()
+    {
+        _anim.SetFloat("Speed", Mathf.Abs(_rb2D.velocity.x));
     }
 }
